@@ -1,0 +1,9 @@
+node_modules
+output
+test*
+app.spec
+build
+dist
+
+.vscode
+.DS_Store

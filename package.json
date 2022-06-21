@@ -1,0 +1,20 @@
+{
+  "name": "subtitle2tts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "vite build",
+    "build:py": "pyinstaller -F ./app.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "msedge-tts": "^1.1.4",
+    "srt-parser-2": "^1.1.7"
+  },
+  "devDependencies": {
+    "vite": "^2.7.2"
+  }
+}

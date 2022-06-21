@@ -1,0 +1,41 @@
+name: Releases
+
+on: [push]
+
+jobs:
+  release:
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            name: mac
+            ext: ''
+            pyinstall_args: --onefile
+          - os: windows-latest
+            name: windows
+            ext: .exe
+            pyinstall_args: --onefile
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install Pip Dependencies
+      shell: bash
+      run: pip install -r requirements.txt
+
+    - name: Build
+      shell: bash
+      run: pyinstaller ${{ matrix.pyinstall_args }} app.py
+
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: app-${{ matrix.os }}
+        path: dist/app${{ matrix.ext }}
